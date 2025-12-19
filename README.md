@@ -26,33 +26,7 @@ The solution is designed as an API-first application with an optional browser-ba
 
 - **Deployment**  
   The application is containerized using Docker and can be run locally or deployed to a cloud platform.
-
----
-
-## Project Structure
-
-├── app.py # Flask application (API + frontend)
-├── recommender/
-│ └── recommend.py # Core recommendation logic
-├── scraper/
-│ ├── scrapping.py
-| └── shl_assessments.csv
-├── evaluation/
-│ ├── evaluate.py # Recall@10 evaluation script
-│ ├── generate_predictions.py
-│ ├── train.csv # Labeled training dataset
-│ └── test.csv # Test dataset
-├── vector_db/
-│ └── chroma_db/ # Persistent ChromaDB storage
-├── templates/
-│ └── index.html # Minimal web frontend
-├── requirements.txt
-├── Dockerfile
-├── .env.example
-└── README.md
-
-
-
+  
 ---
 
 ## Environment Setup
