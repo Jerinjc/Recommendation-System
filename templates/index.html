@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHL Assessment Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>SHL Assessment Recommender</h2>
+
+<input type="text" id="query" size="80"
+       placeholder="Enter a job description or hiring requirement">
+<button onclick="submitQuery()">Recommend</button>
+
+<div id="results" class="result"></div>
+
+<script>
+async function submitQuery() {
+    const query = document.getElementById("query").value;
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "Loading...";
+
+    const response = await fetch("/recommend", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query: query })
+    });
+
+    const data = await response.json();
+    resultsDiv.innerHTML = "";
+
+    if (!data.recommended_assessments) {
+        resultsDiv.innerHTML = "No results found.";
+        return;
+    }
+
+    data.recommended_assessments.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+            <b>${item.name || "Unnamed Assessment"}</b><br>
+            <a href="${item.url}" target="_blank">${item.url}</a><br>
+            <p>${item.description || ""}</p>
+        `;
+        resultsDiv.appendChild(div);
+    });
+}
+</script>
+
+</body>
+</html>
