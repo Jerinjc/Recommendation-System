@@ -1,5 +1,8 @@
 # SHL Assessment Recommendation System
 
+
+<img width="1709" height="858" alt="image" src="https://github.com/user-attachments/assets/85c495e5-6aac-4555-9d84-9a72a18becae" />
+
 This project implements a semantic recommendation system that suggests relevant SHL assessments based on a natural-language hiring query or job description. The system uses vector embeddings and similarity search to retrieve assessments from the SHL product catalog and exposes the recommendations through a REST API and a minimal web interface.
 
 ---
